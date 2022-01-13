@@ -5,6 +5,7 @@ package namespaces
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/epinio/epinio/helpers/kubernetes"
 	"github.com/epinio/epinio/internal/duration"
@@ -44,7 +45,9 @@ func Exists(ctx context.Context, kubeClient *kubernetes.Cluster, lookupNamespace
 	if err != nil {
 		return false, err
 	}
+	fmt.Printf("Lookup Namespace: %+v", lookupNamespace)
 	for _, namespace := range namespaces {
+		fmt.Printf("Namespace: %+v", namespace)
 		if namespace.Name == lookupNamespace {
 			return true, nil
 		}
